@@ -5,7 +5,6 @@
 **/
 const http = require("http")
 const https = require("https")
-const fs = require("fs")
 let server = http.createServer()
 
 server.on("request",(req,res)=>{
@@ -31,7 +30,6 @@ function httpGet(response){
     let data = ""
     let page = Math.ceil(Math.random() * 190)
     try {
-        console.log(page)
         https.get(`https://api.codelife.cc/wallpaper/wallhaven?lang=cn&page=${page}&size=20&q=id:5`, (res) => {
             res.on("data", (chunk) => {
                 data += chunk
