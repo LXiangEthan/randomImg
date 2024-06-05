@@ -23,7 +23,7 @@ server.on("request",(req,res)=>{
     }
 })
 
-server.listen(9000,()=>{
+server.listen(3000,()=>{
     console.log("server start")
 })
 
