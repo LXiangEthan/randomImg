@@ -23,15 +23,16 @@ server.on("request",(req,res)=>{
     }
 })
 
-server.listen(3000,()=>{
+server.listen(9000,()=>{
     console.log("server start")
 })
 
 function httpGet(response){
     let data = ""
-    let page = Math.floor(Math.random() * 38)
+    let page = Math.ceil(Math.random() * 190)
     try {
-        https.get(`https://api.codelife.cc/wallpaper/wallhaven?lang=cn&page=${page}&size=100&q=id:5`, (res) => {
+        console.log(page)
+        https.get(`https://api.codelife.cc/wallpaper/wallhaven?lang=cn&page=${page}&size=20&q=id:5`, (res) => {
             res.on("data", (chunk) => {
                 data += chunk
             })
@@ -53,6 +54,6 @@ function httpGet(response){
             })
         })
     }catch{
-        response.end()
+        response.end("error")
     }
 }
