@@ -1,8 +1,8 @@
 /**
-        * @ author ethan
-        * @ date  2024年06月05日 上午10:38
-        * @ description  写下注释时请使用@变量名/方法名 描述
-**/
+ * @ author ethan
+ * @ date  2024年06月05日 上午10:38
+ * @ description  写下注释时请使用@变量名/方法名 描述
+ **/
 const http = require("http")
 const https = require("https")
 let server = http.createServer()
@@ -22,7 +22,7 @@ server.on("request",(req,res)=>{
     }
 })
 
-server.listen(3000,()=>{
+server.listen(9000,()=>{
     console.log("server start")
 })
 
@@ -38,20 +38,12 @@ function httpGet(response){
                 let id = Math.floor(Math.random() * (JSON.parse(data)).data.length)
                 let randomId = (JSON.parse(data)).data[id].raw
                 https.get(randomId, (ress) => {
-                    ress.setEncoding("binary")
-                    let datas = ""
-                    ress.on("data", (chunk) => {
-                        datas += chunk
-                    })
-
-                    ress.on("end", () => {
-                        const binaryData = Buffer.from(datas, 'binary');
-                        response.end(binaryData);
-                    })
+                    ress.pipe(response)
                 })
             })
         })
-    }catch{
+    }
+    catch{
         response.end("error")
     }
 }
