@@ -35,7 +35,7 @@ function httpGet(response){
                 data += chunk
             })
             res.on("end", () => {
-                let id = Math.floor(Math.random() * (JSON.parse(data)).data.length)
+                let id = Math.floor(Math.random() * ((JSON.parse(data)).data.length))
                 let randomId = (JSON.parse(data)).data[id].raw
                 https.get(randomId, (ress) => {
                     ress.pipe(response)
